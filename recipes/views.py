@@ -6,6 +6,7 @@ def home(request):
         'name': 'Cleberson Garcia'
     })
 def sobre(request):
-    return HttpResponse("Hello World")
+    return render(request, 'recipes/contato.html')
+
 def contato(request):
     return HttpResponse("Hello World")
