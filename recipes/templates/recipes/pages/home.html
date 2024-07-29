@@ -1,27 +1,9 @@
-{% include "recipes/partials/head.html" %}
-<body>
-    {% include "recipes/partials/header.html" %}
-    {% include "recipes/partials/search.html" %}
-    <main class="main-content-container">
-        <div class="main-content container main-content-list">
-            <article class="recipe-list-item">
-                <figure class="recipe-cover">
-                    <img src="https://placehold.co/1280x720/269fe6/white" alt="temporário">
-                </figure>
-                <section>
-                    <p>Descrição</p>
-                </section>
-                <section>
-                    <p>Preparo</p>
-                    <p>Tempo</p>
-                    <p>Porções</p>
-                    <p>Tempo</p>
-                </section>
-                <section>
-                    <button>Ver Mais</button>
-                </section>
-            </article>
-        </div>
-    </main>
-</body>
-</html>
+{% extends "global/base.html" %}
+{% block title %}Home | {% endblock title %}
+{% block content %}
+<div class="main-content container main-content-list">
+    {% for recipe in recipes %}
+        {% include "recipes/partials/recipe.html" %}
+    {% endfor %}
+</div>
+{% endblock content %}
