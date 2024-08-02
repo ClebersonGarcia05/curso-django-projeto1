@@ -6,7 +6,7 @@
                     <img src="{{recipe.cover.url}}" alt="temporário">
                 </a>
             </figure>
-    {% endif %}
+        {% endif %}
         <section class="recipe-title-container">
             <a href="{% url 'recipes:recipe' recipe.id %}">
                 <h2 class="">{{recipe.title}}</h2>
@@ -53,16 +53,22 @@
                 <span class="recipe-meta-text">{{recipe.servings}} {{recipe.servings_unit}}</span>
             </div>
         </section>
-        {% if not is_detail_page %}
+        {% if is_detail_page is not True %}
             <footer class="recipe-footer">
                 <i class="fas fa-eye"></i>
                 <a href="{% url "recipes:recipe" recipe.id %}">Ver Mais</a>
             </footer>
         {% endif %}
-        {% if is_detail_page %}
+
+        {% if is_detail_page is True %}
             <div class="preparation-steps">
-                {{recipe.preparation_steps|linebreaksbr}}
+                {% if recipe.preparation_steps_is_html is True %}
+                    {{ recipe.preparation_steps|safe }}
+                {% else %}
+                    {{ recipe.preparation_steps|linebreaksbr }}
+                {% endif %}
             </div>
         {% endif %}
+
     </article>
 {% endif %}
